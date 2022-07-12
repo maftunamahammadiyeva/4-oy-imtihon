@@ -11,10 +11,13 @@ const overlay = document.querySelector('.overlay');
 const elPrevLink= document.querySelector(".prev-link");
 const elNextLink= document.querySelector(".next-link");
 
+
 let search = "python"
 let page = 1
 
 const bookmarks = [];
+
+
 
 
 console.log(bookmarks);
@@ -86,7 +89,7 @@ elList.addEventListener("click", (evt) => {
 
   if(evt.target.matches(".bookmark-btn")){
     const bookmarkBtnId = evt.target.dataset.bookmarkBtnId;
-    const foundBook = books.items.find((data) => bookmarkBtnId === data.id)
+    const foundBook = books.find((data) => bookmarkBtnId === data.id)
     if(!bookmarks.includes(foundBook)){
       bookmarks.push(foundBook)
 
@@ -116,46 +119,46 @@ elOrdernewest.addEventListener("click", function (){
   }
   getNewest()
 })
+/*
+function moreBtn(data) {
+  data.items.forEach((book) => {
+    const more = `
+    <div>
+    <div class="d-flex justify-content-sm-between p-4">
+    <p>${book.volumeInfo.title}</p>
+    <button class="close-modal">&times;</button>
+    </div>
+    <img class="ms-4" src=${book.volumeInfo.imageLinks.smallThumbnail} alt="" width="200" height="200">
+    <p>${book.volumeInfo.description}</p>
+    <p>"Author : ${book.volumeInfo.authors}"</p>
+    <p>"Published : ${book.volumeInfo.publisher}"</p>
+    <p>"Categories:${book.volumeInfo.categories}"</p>
 
-// function moreBtn(data) {
-//   data.items.forEach((book) => {
-//     const more = `
-//     <div>
-//     <div class="d-flex justify-content-sm-between p-4">
-//     <p>${book.volumeInfo.title}</p>
-//     <button class="close-modal">&times;</button>
-//     </div>
-//     <img class="ms-4" src=${book.volumeInfo.imageLinks.smallThumbnail} alt="" width="200" height="200">
-//     <p>${book.volumeInfo.description}</p>
-//     <p>"Author : ${book.volumeInfo.authors}"</p>
-//     <p>"Published : ${book.volumeInfo.publisher}"</p>
-//     <p>"Categories:${book.volumeInfo.categories}"</p>
+    <a href=${book.volumeInfo.previewLink} class="btn btn-secondary w-100 fw-semibold">Read</a>
+    </div>
+    `;
+    modal.insertAdjacentHTML("beforeend", more);
+  });
+}
+ */
+const openModal = function () {
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
 
-//     <a href=${book.volumeInfo.previewLink} class="btn btn-secondary w-100 fw-semibold">Read</a>
-//     </div>
-//     `;
-//     modal.insertAdjacentHTML("beforeend", more);
-//   });
-// }
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
 
-// const openModal = function () {
-//   modal.classList.remove('hidden');
-//   overlay.classList.remove('hidden');
-// };
+elList.addEventListener('click', openModal);
+closeModalBtn.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
 
-// const closeModal = function () {
-//   modal.classList.add('hidden');
-//   overlay.classList.add('hidden');
-// };
+document.addEventListener('keydown', function (evt) {
+  console.log(evt);
 
-// showModal.addEventListener('click', openModal);
-// closeModalBtn.addEventListener('click', closeModal);
-// overlay.addEventListener('click', closeModal);
-
-// document.addEventListener('keydown', function (evt) {
-//   console.log(evt);
-
-//   if (evt.metaKey && evt.keyCode === 67) {
-//     closeModal();
-//   }
-// });
+  if (evt.metaKey && evt.keyCode === 67) {
+    closeModal();
+  }
+});
