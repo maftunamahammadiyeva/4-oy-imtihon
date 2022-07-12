@@ -73,7 +73,7 @@ const renderBooks = function (books, htmlElement){
 const getBooks = async function() {
   try {
     let startIndex = (page - 1) * 10 + 1;
-    const request = await fetch (`https://www.googleapis.com/books/v1/volumes?q=${search}&startIndex=${page}`);
+    const request = await fetch (`https://www.googleapis.com/books/v1/volumes?q=${search}&startIndex=${startIndex}`);
 
     const books = await request.json();
     const dataBooks = books.items
