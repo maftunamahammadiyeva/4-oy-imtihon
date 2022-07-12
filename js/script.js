@@ -85,20 +85,46 @@ const getBooks = async function() {
 getBooks()
 
 
+
 elList.addEventListener("click", (evt) => {
+  const isBookmarkBtn = evt.target.matches(".bookmark-btn");
 
-  if(evt.target.matches(".bookmark-btn")){
-    const bookmarkBtnId = evt.target.dataset.bookmarkBtnId;
-    const foundBook = books.find((data) => bookmarkBtnId === data.id)
-    if(!bookmarks.includes(foundBook)){
-      bookmarks.push(foundBook)
+  if (isBookmarkBtn) {
+    const foundBtnId = evt.target.dataset.bookmarkBtnId;
 
+    const foundBook = books.items.find((film) => film.id === foundBtnId);
+
+    if (!bookmarks.includes(foundBook)) {
+      bookmarks.push(foundBook);
+
+      localStorage.setItem("localStorageBookmark", JSON.stringify(arr));
+      elList.innerHTML = null;
+
+      read(arr);
+      renderBooks(books, elList)
     }
-
   }
+});
 
-  getBooks()
-})
+function read(data) {
+  let i = 0;
+  data.forEach((item) => {
+    const html = `
+    <div class="col-4__card">
+      <div class="card-p">
+       <h3>${item.volumeInfo.title}</h3>
+      <p>${item.volumeInfo.authors}</p>
+      </div>
+     <div class="card-img">
+        <img class="card-img__1" src="./images/home-page/book-open%201.png" alt="book" />
+        <img data-deleteid="${i}" class="card-img__2" src="./images/home-page/delete%201.png" alt="delete" />
+      </div>
+    </div>
+    `;
+    i++;
+    elBookmarkList.insertAdjacentHTML("beforeend", html);
+  });
+}
 
 
 elInput.addEventListener("input", function(evt){
