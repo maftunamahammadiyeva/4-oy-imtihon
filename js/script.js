@@ -10,6 +10,9 @@ const closeModalBtn = document.querySelector('.close-modal');
 const overlay = document.querySelector('.overlay');
 const elPrevLink= document.querySelector(".prev-link");
 const elNextLink= document.querySelector(".next-link");
+const elPrevBtn = document.querySelector(".prev-btn")
+const elNextBtn = document.querySelector(".next-btn")
+const elPagesNum = document.querySelector(".pages-number")
 
 
 let search = "python"
@@ -69,6 +72,7 @@ const renderBooks = function (books, htmlElement){
 // // get API
 const getBooks = async function() {
   try {
+    let startIndex = (page - 1) * 10 + 1;
     const request = await fetch (`https://www.googleapis.com/books/v1/volumes?q=${search}&startIndex=${page}`);
 
     const books = await request.json();
@@ -137,6 +141,7 @@ elInput.addEventListener("input", function(evt){
 
 // ORDER NEWEST
 elOrdernewest.addEventListener("click", function (){
+
   const getNewest = async function(){
     const request = await fetch (`https://www.googleapis.com/books/v1/volumes?q=${search}&orderBy=newest`);
     const books = await request.json();
@@ -188,3 +193,16 @@ document.addEventListener('keydown', function (evt) {
     closeModal();
   }
 });
+
+
+elPrevBtn.addEventListener("click", function(){
+  page--
+
+  getBooks()
+});
+
+elNextBtn.addEventListener("click", function(){
+  page++
+
+  getBooks()
+})
