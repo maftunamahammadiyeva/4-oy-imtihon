@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://pagination.js.org/dist/2.1.5/pagination.js">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/main.css">
+  <title>Homepage</title>
+</head>
+<body>
+  <header>
+    <div class="container d-flex justify-content-between pt-2 pb-2">
+      <a href="#">
+        <img src="./images/logo.svg" alt="logo" width="226" height="44">
+      </a>
+      <form class="search ms-4 me-5">
+        <label class="search__label" for="">
+          <img src="./images/search.svg" alt="">
+          <input class="search__input" type="text" placeholder="Search books" required name="search">
+        </label>
+      </form>
+
+      <div>
+        <img src="./images/sun-icon.png" alt="sun-icon" width="23" height="23">
+        <button class="btn btn-primary ms-2 ps-2 pe-2" id="logout">Logout</button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="d-flex justify-content-between p-2 border-top border-bottom">
+        <p class="result w-75 text-center fw-semibold">Lorem, ipsum dolor.</p>
+        <button class="order-newest btn btn-secondary">
+          <img class="me-2" src="./images/calendar 1.png" alt="" width="24" height="24">Order by newest
+        </button>
+      </div>
+
+
+      <div class="d-flex flex-wrap justify-content-between">
+
+        <div class="bookmark w-25 mt-5">
+          <h1>Bookmarks</h1>
+          <p>If you don’t like to read, you haven’t found the right book</p>
+          <ul class="bookmark-list"></ul>
+        </div>
+        <div class="w-75 data-container">
+
+
+          <ul class="list d-flex flex-wrap justify-content-between"></ul>
+
+
+
+          <div id="pagination-container"></div>
+
+          <div class="modall hidden ps-5"></div>
+          <div class="overlay hidden"></div>
+
+
+
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="./js/script.js"></script>
+</body>
+</html>
